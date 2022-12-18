@@ -17,3 +17,8 @@ body{
 canvas{
     box-shadow: 10px 10px 10px gray;
 }
+button{
+    padding:5px ;
+    margin:5px;
+    width: 100px;
+}

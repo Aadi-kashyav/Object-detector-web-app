@@ -1,7 +1,7 @@
 img = "";
 status = "";
 function preload(){
-img = loadImage('bed.jpg')
+img = loadImage("kitchen.jpg");
 }
 function setup() {
     canvas = createCanvas(640,420);
@@ -37,7 +37,4 @@ function gotResult(error,results){
         console.log(error);
     }
     console.log(results)
-}
-function back() {
-    window.location = "index.html";
 }
