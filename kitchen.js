@@ -1,7 +1,8 @@
-img = "";
+img1 = "";
 status = "";
+objects = [];
 function preload(){
-img = loadImage("kitchen.jpg");
+img1 = loadImage("kitchen.jpg");
 }
 function setup() {
     canvas = createCanvas(640,420);
@@ -10,17 +11,24 @@ function setup() {
     document.getElementById("status").innerHTML = "Status : Detecting Objects";
 }
 function draw(){
-    image(img,0,0,640,420);
-    fill("#FF0000");
-    text("Bed", 45 , 75 );
-    noFill();
-    stroke("#FF0000");
-    rect(30,60,450,350);
+    image(img1,0,0,640,420);
+    if(status != ""){
+        for(i = 0 ; i < objects.length ; i++){
+            document.getElementById("status").innerHTML = "Status : Object detected";
+
+            fill("#FF0000");
+            percent = floor(objects[i].confidence * 100);
+            text(objects[i].label + " " + percent + "%" ,objects[i].x, objects[i].y);
+            noFill();
+            stroke("#FF0000");
+            rect(objects[i].x , objects[i].y ,objects[i].width , objects[i].height);
+        }
+    }  
 }
 function modelLoaded(){
     console.log("Model loaded!");
     status = true;
-    objectDetector.detect(img , gotResult);
+    objectDetector.detect(img1 , gotResult);
 }
 function gotResult(error,results){
     if (error){
@@ -30,11 +38,15 @@ function gotResult(error,results){
 }function modelLoaded(){
     console.log("Model loaded!");
     status = true;
-    objectDetector.detect(img , gotResult);
+    objectDetector.detect(img1 , gotResult);
 }
 function gotResult(error,results){
     if (error){
         console.log(error);
     }
-    console.log(results)
+    console.log(results);
+    objects = results;
+}
+function back(){
+    window.location = "index.html";
 }

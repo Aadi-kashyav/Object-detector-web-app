@@ -16,9 +16,13 @@ body{
 }
 canvas{
     box-shadow: 10px 10px 10px gray;
+    margin-top: 70px;
 }
 button{
     padding:5px ;
     margin:5px;
     width: 100px;
+}
+p{
+    color: aliceblue;
 }
